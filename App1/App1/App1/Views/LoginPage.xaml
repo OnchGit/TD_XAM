@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.LoginPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BorderColor="LightBlue" BackgroundColor="LightGray" Margin="20,20,20,20" CornerRadius="10">
+                <Label Text="Login Page"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"/>
+            </Frame>
+
+            <Frame BorderColor="LightBlue" BackgroundColor="LightGray" Margin="20,20,20,20" CornerRadius="10">
+                <StackLayout>
+                    <Entry Placeholder="email..." BackgroundColor="White" Text="{Binding usr}" />
+                    <Entry IsPassword="True" Placeholder="Password..." BackgroundColor="White" Text="{Binding passw}" />
+                    <Button Text="Login" BackgroundColor="White" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" Command="{Binding LoginCommand}"/>
+                    <Button Text="Inscription" BackgroundColor="White" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0"/>
+                </StackLayout>
+            </Frame>
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
