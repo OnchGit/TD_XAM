@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App1.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,14 +44,25 @@ namespace App1.Auxilliary
             set { SetValue(DescProperty, value); }
         }
 
+        
+
 
         public static readonly BindableProperty ImgProperty =
-        BindableProperty.Create("Img", typeof(string), typeof(PlaceViewCell), "");
-        public string Img
+        BindableProperty.Create("Img", typeof(int), typeof(PlaceViewCell), 0);
+        public int Img
         {
-            get { return (string)GetValue(ImgProperty); }
+            get { return (int)GetValue(ImgProperty); }
             set { SetValue(ImgProperty, value); }
         }
+
+        public static readonly BindableProperty ImgSrcProperty =
+        BindableProperty.Create("ImgSrc", typeof(Image), typeof(PlaceViewCell), new Image());
+        public Image ImgSrc
+        {
+            get { return (Image)GetValue(ImgSrcProperty); }
+            set { SetValue(ImgSrcProperty, value); }
+        }
+
 
         public static readonly BindableProperty LatProperty =
         BindableProperty.Create("Lat", typeof(float), typeof(PlaceViewCell), 0.0f);
@@ -69,7 +81,7 @@ namespace App1.Auxilliary
         }
 
 
-
+        
 
 
 

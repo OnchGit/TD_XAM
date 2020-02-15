@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Common.Api.Dtos;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
+using App1.Objects;
+using System.IO;
 
 namespace App1.Services
 {
@@ -85,7 +87,7 @@ namespace App1.Services
             return client;
         }
 
-        public static async Task<List<PlaceItem>> GetPlaces()
+        public static async Task<List<PlaceItemSummary2>> GetPlaces()
         {
             var client = GetAuthClient();
             var uri = new Uri(API + "places/");
@@ -93,7 +95,7 @@ namespace App1.Services
             if (response.IsSuccessStatusCode)
             {
                 var temp = await response.Content.ReadAsStringAsync();
-                var res = JsonConvert.DeserializeObject<Response<List<PlaceItem>>>(temp);
+                var res = JsonConvert.DeserializeObject<Response<List<PlaceItemSummary2>>>(temp);
                 response.Dispose();
                 client.Dispose();
                 return res.Data;
@@ -104,14 +106,30 @@ namespace App1.Services
                 client.Dispose();
                 return null;
             }
+        }
 
-
-
+        public static async Task<byte[]> GetImageFromId(int id)
+        {
+            var client = GetAuthClient();
+            var uri = new Uri(API + "images/"+id);
+            HttpResponseMessage response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                byte[] tmp = await response.Content.ReadAsByteArrayAsync();                
+                response.Dispose();
+                client.Dispose();
+                
+                return tmp;
+            }
+            else
+            {
+                response.Dispose();
+                client.Dispose();
+                return null;
+            }
 
 
         }
-
-
 
     }
 }

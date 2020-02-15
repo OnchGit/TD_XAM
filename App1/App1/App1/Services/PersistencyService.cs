@@ -1,15 +1,18 @@
-﻿using System;
+﻿using App1.Objects;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using TD.Api.Dtos;
+using Xamarin.Forms;
 
 namespace App1.Services
 {
     static class PersistencyService
     {
         static LoginResult lr = new LoginResult();
-        static ObservableCollection<PlaceItem> oc = new ObservableCollection<PlaceItem>();
+        static ObservableCollection<PlaceItemSummary2> oc = new ObservableCollection<PlaceItemSummary2>();
 
 
         public static void lr_update(LoginResult res)
@@ -30,18 +33,21 @@ namespace App1.Services
             return lr.AccessToken;
         }
 
-        public static ObservableCollection<PlaceItem> getOc()
+        public static ObservableCollection<PlaceItemSummary2> getOc()
         {
             return oc;
         }
 
-        public static void OcFiller(List<PlaceItem> l)
+        public static async void OcFiller(List<PlaceItemSummary2> l)
         {
             if(l.Count != oc.Count)
             {
-                oc = new ObservableCollection<PlaceItem>();
-                foreach (PlaceItem element in l)
+                oc = new ObservableCollection<PlaceItemSummary2>();
+                foreach (PlaceItemSummary2 element in l)
                 {
+                    
+                    var tmp = await ApiService.GetImageFromId(element.ImageId);
+                    element.ImgSrc = (StreamImageSource)ImageSource.FromStream(() => new MemoryStream(tmp));
                     if (element.Description.Length > 100) element.Description = element.Description.Substring(0, 99) + "...";
                     oc.Add(element);
                 }
