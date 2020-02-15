@@ -7,10 +7,7 @@ namespace FourSquare.ViewModels
 {
     class NewPlaceViewModel:ViewModelBase
     {
-        public static void test()
-        {
-            var x = 12;
-        }
+
 
     }
 }
