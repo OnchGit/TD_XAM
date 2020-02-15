@@ -7,5 +7,7 @@ namespace App1.ViewModels
 {
     class MainPageViewModel:ViewModelBase
     {
+
+
     }
 }

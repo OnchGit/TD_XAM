@@ -15,6 +15,8 @@ namespace App1
     {
         public ICommand LoginCommand { get; }
 
+        public ICommand GoToRegisterCommand { get; }
+
         private string _usr;
         public string usr
         {
@@ -32,6 +34,8 @@ namespace App1
         public LoginPageViewModel()
         {
             LoginCommand = new Command(LoginAction);
+            GoToRegisterCommand = new Command(RegisterAction);
+
         }
 
         private async void LoginAction()
@@ -42,8 +46,11 @@ namespace App1
                 TokenService.lr_update(res);
                 await NavigationService.PushAsync(new MainPage());
             }
-            
+        }
 
+        private async void RegisterAction()
+        {
+            await NavigationService.PushAsync(new RegisterPage());
         }
 
     }

@@ -11,7 +11,7 @@ namespace App1.ViewModels
 {
     class RegisterPageViewModel: ViewModelBase
     {
-        public ICommand RegisterCommand { get; }
+        public ICommand Register2Command { get; }
 
         private string _usr;
         public string usr
@@ -43,17 +43,16 @@ namespace App1.ViewModels
 
         public RegisterPageViewModel()
         {
-            RegisterCommand = new Command(RegisterAction);
+            Register2Command = new Command(RegisterAction);
         }
 
         private async void RegisterAction()
         {
             LoginResult res = await ApiService.RegistrationHandler(usr, ln, fn, passw);
-            if (res != null)
-            {
-                TokenService.lr_update(res);
-                await NavigationService.PushAsync(new LoginPage());
-            }
+
+               
+                await NavigationService.PopAsync();
+            
 
 
         }
