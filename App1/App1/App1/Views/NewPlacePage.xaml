@@ -5,9 +5,16 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Add A New Image:" HorizontalTextAlignment="Center" Margin="10"/>
+            <Image HeightRequest="100" WidthRequest="100"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Choose A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4"/>
+                <Button Text="Take A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4"/>
+            </StackLayout>
+            <Entry Placeholder="Latitude"/>
+            <Entry Placeholder="Longitude"/>
+                <Button Text="Get Coordinates From GPS" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4"/>
+                <Button Text="Add New Place" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

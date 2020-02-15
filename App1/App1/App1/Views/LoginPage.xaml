@@ -15,8 +15,8 @@
                 <StackLayout>
                     <Entry Placeholder="email..." BackgroundColor="White" Text="{Binding usr}" />
                     <Entry IsPassword="True" Placeholder="Password..." BackgroundColor="White" Text="{Binding passw}" />
-                    <Button Text="Login" BackgroundColor="White" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" Command="{Binding LoginCommand}"/>
-                    <Button Text="Register" BackgroundColor="White" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" Command="{Binding GoToRegisterCommand}" />
+                        <Button Text="Login" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" BorderWidth="4" Command="{Binding LoginCommand}"/>
+                    <Button Text="Register" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" BorderWidth="4" Command="{Binding GoToRegisterCommand}" />
                 </StackLayout>
             </Frame>
             

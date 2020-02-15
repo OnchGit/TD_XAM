@@ -17,9 +17,7 @@
 
                 </ListView>
             </Frame>
-            <Button Text="Add A New Place" BackgroundColor="White" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" Command="{Binding GoToNewPlaceCommand}" />
-
-
+                <Button Text="Add A New Place" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" BorderWidth="4" Command="{Binding GoToNewPlaceCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
