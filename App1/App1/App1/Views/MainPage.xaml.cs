@@ -8,6 +8,7 @@ using TD.Api.Dtos;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Storm.Mvvm;
+using App1.ViewModels;
 
 namespace App1.Views
 {
@@ -16,9 +17,10 @@ namespace App1.Views
 	{
 
 		public MainPage ()
-		{         
+		{
+            BindingContext = new MainPageViewModel();
 			InitializeComponent ();
-            Console.WriteLine("MAIN" + " " + TokenService.GetAccessToken());
+            
         }
 	}
 }

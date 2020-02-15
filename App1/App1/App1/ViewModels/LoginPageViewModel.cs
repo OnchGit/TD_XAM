@@ -43,7 +43,8 @@ namespace App1
             LoginResult res = await ApiService.LoginHandler(usr, passw);
             if(res != null)
             {
-                TokenService.lr_update(res);
+                PersistencyService.lr_update(res);
+                PersistencyService.OcFiller(await ApiService.GetPlaces());
                 await NavigationService.PushAsync(new MainPage());
             }
         }

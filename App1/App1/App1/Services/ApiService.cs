@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using TD.Api.Dtos;
 using System.Threading.Tasks;
 using Common.Api.Dtos;
+using System.Collections.ObjectModel;
+using System.Net.Http.Headers;
 
 namespace App1.Services
 {
@@ -15,6 +17,8 @@ namespace App1.Services
 
         const string API = "https://td-api.julienmialon.com/";
         const string API_AUTH = API + "auth/";
+
+
 
 
         public static async Task<LoginResult> LoginHandler(string usn,string passw)
@@ -71,9 +75,42 @@ namespace App1.Services
                 client.Dispose();
                 return null;
             }
+        }
+
+
+        public static HttpClient GetAuthClient()
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", PersistencyService.GetAccessToken());
+            return client;
+        }
+
+        public static async Task<List<PlaceItem>> GetPlaces()
+        {
+            var client = GetAuthClient();
+            var uri = new Uri(API + "places/");
+            HttpResponseMessage response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var temp = await response.Content.ReadAsStringAsync();
+                var res = JsonConvert.DeserializeObject<Response<List<PlaceItem>>>(temp);
+                response.Dispose();
+                client.Dispose();
+                return res.Data;
+            }
+            else
+            {
+                response.Dispose();
+                client.Dispose();
+                return null;
+            }
+
+
+
 
 
         }
+
 
 
     }

@@ -49,12 +49,7 @@ namespace App1.ViewModels
         private async void RegisterAction()
         {
             LoginResult res = await ApiService.RegistrationHandler(usr, ln, fn, passw);
-
-               
                 await NavigationService.PopAsync();
-            
-
-
         }
 
 
