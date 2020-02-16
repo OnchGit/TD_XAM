@@ -11,15 +11,15 @@
                 <Label Text="Location:" HorizontalOptions="Center" />
                 <ContentView Content="{Binding PlaceMap, Mode=TwoWay}" HeightRequest="250"/>
             <Label Text="Comments:" HorizontalOptions="Center"/>
-            <ListView HeightRequest="100" ItemsSource="{Binding CommentList, Mode=TwoWay}">
+            <ListView HeightRequest="100" ItemsSource="{Binding CommentList, Mode=TwoWay}" RefreshCommand="{Binding CommentUpdateCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <auxilliary:CommentCell/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-                <Entry Placeholder="Your Comment..."/>
-                <Button Text="Post Comment" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4"/>
+                <Entry Placeholder="Your Comment..." Text="{Binding CommentContent}"/>
+                <Button Text="Post Comment" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4" Command="{Binding PostCommentCommand}"/>
                 <Button Text="GoBack" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4"/>
             </StackLayout>
         

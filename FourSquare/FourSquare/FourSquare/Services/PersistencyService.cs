@@ -16,7 +16,9 @@ namespace FourSquare.Services
         static ObservableCollection<PlaceItemSummary2> oc = new ObservableCollection<PlaceItemSummary2>();
         static ImageSource ImgSrcAddPlace = null;
         static int PlaceId = -1;
+        static UserItem User = null;
         static PlaceItem PlaceDetail;
+
 
         public static void WipePlaceId()
         {
@@ -26,6 +28,21 @@ namespace FourSquare.Services
         public static int GetPlaceId()
         {
             return PlaceId;
+        }
+
+        public static UserItem GetUser()
+        {
+            return User;
+        }
+
+        public static void SetUser(UserItem ui)
+        {
+            User = ui;
+        }
+
+        public static int GetUserId()
+        {
+            return User.Id;
         }
 
         public static void SetPlaceId(int id)

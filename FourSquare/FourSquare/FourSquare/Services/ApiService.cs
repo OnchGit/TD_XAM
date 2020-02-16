@@ -238,5 +238,75 @@ namespace FourSquare.Services
 
 
         }
+
+        public static async Task<int> PostComment(int id, string text)
+        {
+            var client = GetAuthClient();
+            var uri = new Uri(API + "places/" + id + "/comments");
+            CreateCommentRequest tmp = new CreateCommentRequest
+            {
+                Text = text
+            };
+            var json = JsonConvert.SerializeObject(tmp);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(uri, content);
+            return 1;
+
+        }
+
+        public static async Task<UserItem> GetUser()
+        {
+            var client = GetAuthClient();
+            var uri = new Uri(API + "me");
+            HttpResponseMessage response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var str = await response.Content.ReadAsStringAsync();
+                var tmp = JsonConvert.DeserializeObject<Response<UserItem>>(str);
+                client.Dispose();
+                response.Dispose();
+                return tmp.Data;
+            }
+            else
+            {
+                client.Dispose();
+                response.Dispose();
+                return null;
+            }
+        }
+
+        public static async Task<int> UpdateProfile(string fn, string ln, int ImgId)
+        {
+            var client = GetAuthClient();
+            var uri = new Uri(API + "me");
+            var tmp = new UpdateProfileRequest {
+                FirstName=fn,
+                LastName =ln,
+                ImageId = ImgId
+            };
+            var json = JsonConvert.SerializeObject(tmp);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync(uri, content);
+
+            return 1;
+        }
+
+        public static async Task<int> UpdatePassword(string _OldPassword, string _NewPassword)
+        {
+            var client = GetAuthClient();
+            var uri = new Uri(API + "me/password");
+            var tmp = new UpdatePasswordRequest
+            {
+                OldPassword=_OldPassword,
+                NewPassword=_NewPassword
+            };
+            var json = JsonConvert.SerializeObject(tmp);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync(uri, content);
+
+            return 1;
+        }
+
+
     }
 }

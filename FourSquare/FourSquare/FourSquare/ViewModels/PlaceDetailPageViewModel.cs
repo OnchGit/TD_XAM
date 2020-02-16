@@ -2,19 +2,31 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using FourSquare.Auxilliary;
 using FourSquare.Services;
 using Storm.Mvvm;
 using TD.Api.Dtos;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace FourSquare.ViewModels
 {
     class PlaceDetailPageViewModel: ViewModelBase
     {
+        public ICommand PostCommentCommand { get; }
+        public ICommand CommentUpdateCommand { get; }
+
         private Map _Map;
         private ObservableCollection<CommentCell> _CommentList = new ObservableCollection<CommentCell>();
         private PlaceItem PI;
+        private string _CommentContent;
+
+        public string CommentContent
+        {
+            get => _CommentContent;
+            set => SetProperty(ref _CommentContent, value);
+        }
 
         public ObservableCollection<CommentCell> CommentList
         {
@@ -22,20 +34,20 @@ namespace FourSquare.ViewModels
             set => SetProperty(ref _CommentList, value);
         }
 
-
         public Map PlaceMap
         {
             get => _Map;
             set => SetProperty(ref _Map, value);
         }
-     
 
         public PlaceDetailPageViewModel()
         {
             PlaceMap = new Map();
             PlaceMap.MinimumHeightRequest = 250;
             PI = PersistencyService.GetPlaceDetail();
-            //PersistencyService.WipePlaceDetail();
+            PersistencyService.WipePlaceDetail();
+            PostCommentCommand = new Command(PostComment);
+            CommentUpdateCommand = new Command(Update);
             MapSetup();
             CommentSetup();
         }
@@ -60,18 +72,34 @@ namespace FourSquare.ViewModels
 
         private void CommentSetup()
         {
-            foreach(CommentItem element in PI.Comments)
+            CommentList = new ObservableCollection<CommentCell>();
+            foreach (CommentItem element in PI.Comments)
             {
                 var tmp = new CommentCell
                 {
                     Author = element.Author.Email + " says:",
-                    Date = element.Date.ToShortTimeString(),
+                    Date = element.Date.ToLongTimeString()+":",
                     Text = element.Text
                 };
 
-                CommentList.Add(tmp);
+                if (!CommentList.Contains(tmp))
+                {
+                    CommentList.Add(tmp);
+                }
             }
         }
 
+        private async void PostComment()
+        {
+            int temp = await ApiService.PostComment(PI.Id, CommentContent);
+            Update();
+
+        }
+
+        private async void Update()
+        {
+            PI = await ApiService.GetPlaceFromId(PI.Id);
+            CommentSetup();
+        }
     }
 }

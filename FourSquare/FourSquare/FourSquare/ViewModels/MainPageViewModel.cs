@@ -21,6 +21,7 @@ namespace FourSquare.ViewModels
 
 
         public ICommand GoToNewPlaceCommand { get; }
+        public ICommand GoToProfileCommand { get; }
         public ICommand PVCSelectedCommand { get; }
 
         private PlaceItemSummary2 _PVC;
@@ -35,15 +36,11 @@ namespace FourSquare.ViewModels
             }
         }
 
-
-
-
         public MainPageViewModel()
         {
             GoToNewPlaceCommand = new Command(GoToNewPlaceAction);
             PVCSelectedCommand = new Command(GoToPlaceDetailAction);
-
-
+            GoToProfileCommand = new Command(GoToProfileAction);
         }
 
         private async void GoToPlaceDetailAction()
@@ -58,6 +55,16 @@ namespace FourSquare.ViewModels
             await NavigationService.PushAsync(new NewPlacePage());
         }
 
+        private async void GoToProfileAction()
+        {
+            if (PersistencyService.GetUser() == null)
+            {
+                PersistencyService.SetUser(await ApiService.GetUser());
+            }
+            
+
+            await NavigationService.PushAsync(new ProfilePage());
+        }
 
         public ObservableCollection<PlaceItemSummary2> oc
         {

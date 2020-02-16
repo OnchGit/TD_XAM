@@ -17,7 +17,11 @@
 
                 </ListView>
             </Frame>
+            <StackLayout Orientation="Horizontal">
                 <Button Text="Add A New Place" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" BorderWidth="4" Command="{Binding GoToNewPlaceCommand}" />
+                <Button Text="Check Profile" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="0,10,0,0" BorderWidth="4" Command="{Binding GoToProfileCommand}" />
+            </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
