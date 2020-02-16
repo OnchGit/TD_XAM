@@ -10,7 +10,7 @@
         <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
                          android:resource="@xml/file_paths"></meta-data>
       </provider>
-      <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDTTP_hkJwIAV5v5PxyNnMQTi_gul_-1KM" />
+      <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="" />
       <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
       <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>

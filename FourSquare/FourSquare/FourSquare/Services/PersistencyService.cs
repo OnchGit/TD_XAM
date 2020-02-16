@@ -15,6 +15,7 @@ namespace FourSquare.Services
         static ObservableCollection<PlaceItemSummary2> oc = new ObservableCollection<PlaceItemSummary2>();
         static ImageSource ImgSrcAddPlace = null;
         static int PlaceId = -1;
+        static PlaceItem PlaceDetail;
 
         public static void WipePlaceId()
         {
@@ -90,6 +91,22 @@ namespace FourSquare.Services
         public static void WipeImgSrcAddPlace()
         {
             ImgSrcAddPlace = null;
+        }
+
+        public static async void SetPlaceDetail()
+        {
+            PlaceDetail = await ApiService.GetPlaceFromId(PlaceId);
+        }
+
+        public static PlaceItem GetPlaceDetail()
+        {
+           
+            return PlaceDetail;
+        }
+
+        public static void WipePlaceDetail()
+        {
+            PlaceDetail = null;
         }
 
     }

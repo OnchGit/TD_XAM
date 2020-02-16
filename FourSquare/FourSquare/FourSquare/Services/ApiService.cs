@@ -207,11 +207,34 @@ namespace FourSquare.Services
             HttpResponseMessage response = await client.PostAsync(uri, content);
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("SUCESS PLACE!");
+                
             }
 
+            client.Dispose();
+            response.Dispose();
             return 0;
 
+
+
+        }
+
+        public static async Task<PlaceItem> GetPlaceFromId(int id)
+        {
+            var client = GetAuthClient();
+            var uri = new Uri(API+"places/"+id);
+            HttpResponseMessage response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var tmp = await response.Content.ReadAsStringAsync();
+                var json = JsonConvert.DeserializeObject<Response<PlaceItem>>(tmp);
+                client.Dispose();
+                response.Dispose();
+                return json.Data;
+            }
+            else
+                client.Dispose();
+                response.Dispose();
+                return null;
 
 
         }

@@ -30,6 +30,7 @@ namespace FourSquare.ViewModels
             set {
                 SetProperty(ref _PVC, value);
                 PersistencyService.SetPlaceId(PVC.Id);
+                PersistencyService.SetPlaceDetail();
                 GoToPlaceDetailAction();
                 
 

@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             x:Class="FourSquare.Views.PlaceDetailPage">
+             x:Class="FourSquare.Views.PlaceDetailPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Location:"             
                 HorizontalOptions="Center" />
-            <ContentView Content="{Binding PlaceMap}"/>
+            <ContentView Content="{Binding PlaceMap, Mode=TwoWay}" HeightRequest="250"/>
 
 
 
