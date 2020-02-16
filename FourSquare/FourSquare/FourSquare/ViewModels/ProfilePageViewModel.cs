@@ -155,6 +155,9 @@ namespace FourSquare.ViewModels
         {
             var ImgId = await ApiService.UploadImage(_ImgByte);
             await ApiService.UpdateProfile(fn, ln, ImgId);
+            var temp = await ApiService.GetUser();
+
+            Console.WriteLine("USERUPDATE: " + temp.FirstName + " " + temp.LastName + " " + temp.ImageId);
 
         }
 
