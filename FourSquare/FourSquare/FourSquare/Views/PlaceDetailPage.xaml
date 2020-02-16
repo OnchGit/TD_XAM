@@ -20,7 +20,7 @@
             </ListView>
                 <Entry Placeholder="Your Comment..." Text="{Binding CommentContent}"/>
                 <Button Text="Post Comment" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4" Command="{Binding PostCommentCommand}"/>
-                <Button Text="GoBack" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4"/>
+                <Button Text="GoBack" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4" Command="{Binding GoBackCommand}"/>
             </StackLayout>
         
     </ContentPage.Content>

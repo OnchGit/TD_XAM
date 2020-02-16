@@ -16,6 +16,7 @@ namespace FourSquare.ViewModels
     {
         public ICommand PostCommentCommand { get; }
         public ICommand CommentUpdateCommand { get; }
+        public ICommand GoBackCommand { get; }
 
         private Map _Map;
         private ObservableCollection<CommentCell> _CommentList = new ObservableCollection<CommentCell>();
@@ -48,6 +49,7 @@ namespace FourSquare.ViewModels
             PersistencyService.WipePlaceDetail();
             PostCommentCommand = new Command(PostComment);
             CommentUpdateCommand = new Command(Update);
+            GoBackCommand = new Command(GoBack);
             MapSetup();
             CommentSetup();
         }
@@ -100,6 +102,11 @@ namespace FourSquare.ViewModels
         {
             PI = await ApiService.GetPlaceFromId(PI.Id);
             CommentSetup();
+        }
+
+        private async void GoBack()
+        {
+            await NavigationService.PopAsync();
         }
     }
 }
