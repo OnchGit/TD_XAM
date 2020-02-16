@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using TD.Api.Dtos;
 using Xamarin.Forms;
 
@@ -93,9 +94,10 @@ namespace FourSquare.Services
             ImgSrcAddPlace = null;
         }
 
-        public static async void SetPlaceDetail()
+        public static async Task<int> SetPlaceDetail()
         {
             PlaceDetail = await ApiService.GetPlaceFromId(PlaceId);
+            return 0;
         }
 
         public static PlaceItem GetPlaceDetail()

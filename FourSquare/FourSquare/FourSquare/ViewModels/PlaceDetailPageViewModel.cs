@@ -31,17 +31,18 @@ namespace FourSquare.ViewModels
 
         private void MapSetup()
         {
-            double prout = PI.Latitude;
-            double prout2 = PI.Latitude;
+
             Position pos = new Position(PI.Latitude, PI.Longitude);
             Pin pin = new Pin
             {
-                Address = PI.Title,
+                
                 Label = PI.Title,
                 Position = pos
             };
 
             PlaceMap.Pins.Add(pin);
+            PlaceMap.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Distance.FromKilometers(1)));
+           
             
 
         }

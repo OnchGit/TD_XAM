@@ -5,14 +5,16 @@
              x:Class="FourSquare.Views.PlaceDetailPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Location:"             
-                HorizontalOptions="Center" />
-            <ContentView Content="{Binding PlaceMap, Mode=TwoWay}" HeightRequest="250"/>
-
-
-
-
-        </StackLayout>
+        
+            <StackLayout>
+                <Label Text="Location:" HorizontalOptions="Center" />
+                <ContentView Content="{Binding PlaceMap, Mode=TwoWay}" HeightRequest="250"/>
+                <Label Text="Comments:" HorizontalOptions="Center"/>
+                <ListView HeightRequest="100"></ListView>
+                <Entry Placeholder="Your Comment..."/>
+                <Button Text="Post Comment" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4"/>
+                <Button Text="GoBack" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4"/>
+            </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

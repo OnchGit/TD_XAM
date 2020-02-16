@@ -29,8 +29,6 @@ namespace FourSquare.ViewModels
             get => _PVC;
             set {
                 SetProperty(ref _PVC, value);
-                PersistencyService.SetPlaceId(PVC.Id);
-                PersistencyService.SetPlaceDetail();
                 GoToPlaceDetailAction();
                 
 
@@ -50,6 +48,8 @@ namespace FourSquare.ViewModels
 
         private async void GoToPlaceDetailAction()
         {
+            PersistencyService.SetPlaceId(PVC.Id);
+            await PersistencyService.SetPlaceDetail();
             await NavigationService.PushAsync(new PlaceDetailPage());
         }
 
