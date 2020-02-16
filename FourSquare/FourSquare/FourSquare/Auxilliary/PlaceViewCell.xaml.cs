@@ -62,29 +62,5 @@ namespace FourSquare.Auxilliary
             get { return (Image)GetValue(ImgSrcProperty); }
             set { SetValue(ImgSrcProperty, value); }
         }
-
-
-        public static readonly BindableProperty LatProperty =
-        BindableProperty.Create("Lat", typeof(float), typeof(PlaceViewCell), 0.0f);
-        public float Lat
-        {
-            get { return (float)GetValue(LatProperty); }
-            set { SetValue(LatProperty, value); }
-        }
-
-        public static readonly BindableProperty LonProperty =
-        BindableProperty.Create("Lon", typeof(float), typeof(PlaceViewCell), 0.0f);
-        public float Lon
-        {
-            get { return (float)GetValue(LonProperty); }
-            set { SetValue(LonProperty, value); }
-        }
-
-
-        
-
-
-
-
     }
 }

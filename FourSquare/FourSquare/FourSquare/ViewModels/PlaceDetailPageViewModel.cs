@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using FourSquare.Auxilliary;
 using FourSquare.Services;
 using Storm.Mvvm;
 using TD.Api.Dtos;
@@ -11,8 +13,16 @@ namespace FourSquare.ViewModels
     class PlaceDetailPageViewModel: ViewModelBase
     {
         private Map _Map;
-        
+        private ObservableCollection<CommentCell> _CommentList = new ObservableCollection<CommentCell>();
         private PlaceItem PI;
+
+        public ObservableCollection<CommentCell> CommentList
+        {
+            get => _CommentList;
+            set => SetProperty(ref _CommentList, value);
+        }
+
+
         public Map PlaceMap
         {
             get => _Map;
@@ -27,6 +37,7 @@ namespace FourSquare.ViewModels
             PI = PersistencyService.GetPlaceDetail();
             //PersistencyService.WipePlaceDetail();
             MapSetup();
+            CommentSetup();
         }
 
         private void MapSetup()
@@ -47,7 +58,20 @@ namespace FourSquare.ViewModels
 
         }
 
+        private void CommentSetup()
+        {
+            foreach(CommentItem element in PI.Comments)
+            {
+                var tmp = new CommentCell
+                {
+                    Author = element.Author.Email + " says:",
+                    Date = element.Date.ToShortTimeString(),
+                    Text = element.Text
+                };
 
+                CommentList.Add(tmp);
+            }
+        }
 
     }
 }
