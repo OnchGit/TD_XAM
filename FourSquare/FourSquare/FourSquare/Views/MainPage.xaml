@@ -8,10 +8,10 @@
         <StackLayout>
 
             <Frame Margin="5,5,5,5">
-                <ListView ItemsSource="{Binding oc}" HasUnevenRows="True">
+                <ListView ItemsSource="{Binding oc}" HasUnevenRows="True" SelectedItem="{Binding PVC, Mode=TwoWay}" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <auxilliary:PlaceViewCell />
+                            <auxilliary:PlaceViewCell/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
 

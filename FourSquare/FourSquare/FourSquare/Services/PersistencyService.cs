@@ -13,7 +13,29 @@ namespace FourSquare.Services
     {
         static LoginResult lr = new LoginResult();
         static ObservableCollection<PlaceItemSummary2> oc = new ObservableCollection<PlaceItemSummary2>();
+        static ImageSource ImgSrcAddPlace = null;
+        static int PlaceId = -1;
 
+        public static void WipePlaceId()
+        {
+            PlaceId = -1;
+        }
+
+        public static int GetPlaceId()
+        {
+            return PlaceId;
+        }
+
+        public static void SetPlaceId(int id)
+        {
+            PlaceId = id;
+        }
+
+
+        public static void WipeOc()
+        {
+            oc = new ObservableCollection<PlaceItemSummary2>();
+        }
 
         public static void lr_update(LoginResult res)
         {
@@ -53,12 +75,22 @@ namespace FourSquare.Services
                 }
 
             }
-
-
-
-
         }
 
+        public static ImageSource GetImgSrcAddPlace()
+        {
+            return ImgSrcAddPlace;
+        }
+
+        public static void SetImgSrcAddPlace(ImageSource im)
+        {
+            ImgSrcAddPlace = im;
+        }
+
+        public static void WipeImgSrcAddPlace()
+        {
+            ImgSrcAddPlace = null;
+        }
 
     }
 }

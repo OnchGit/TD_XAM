@@ -4,17 +4,27 @@
              x:Class="FourSquare.Views.NewPlacePage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Add A New Image:" HorizontalTextAlignment="Center" Margin="10"/>
-            <Image HeightRequest="100" WidthRequest="100"/>
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Choose A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4"/>
-                <Button Text="Take A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4"/>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Add A Title:" HorizontalTextAlignment="Center" Margin="10"/>
+                <Entry Placeholder="Title..." Text="{Binding Title}"/>
+                <Label Text="Add A Description:" HorizontalTextAlignment="Center" Margin="10"/>
+                <Editor Placeholder="Description..." Text="{Binding Desc}" MinimumHeightRequest="100"/>
+                <Label Text="Add A New Image:" HorizontalTextAlignment="Center" Margin="10"/>
+                <Image HeightRequest="250" WidthRequest="250" Source="{Binding ImgSrc}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Choose A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding PickPictureCommand}"/>
+                    <Button Text="Take A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding TakePictureCommand}"/>
+                </StackLayout>
+                <Entry Placeholder="Latitude" Keyboard="Numeric" Text="{Binding Lat}"/>
+                <Entry Placeholder="Longitude" Keyboard="Numeric"  Text="{Binding Lon}"/>
+                    <Button Text="Get Coordinates From GPS" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding GetCoordsCommand}"/>
+                    <Button Text="Add New Place" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding UploadPlaceCommand}"/>
+
+
             </StackLayout>
-            <Entry Placeholder="Latitude"/>
-            <Entry Placeholder="Longitude"/>
-                <Button Text="Get Coordinates From GPS" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4"/>
-                <Button Text="Add New Place" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4"/>
-        </StackLayout>
+
+        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>
