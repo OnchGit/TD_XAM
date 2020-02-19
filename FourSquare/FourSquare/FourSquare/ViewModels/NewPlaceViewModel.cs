@@ -93,7 +93,7 @@ namespace FourSquare.ViewModels
                 return stream;
             });
 
-            _ImgByte = ReadFully(file.GetStream());
+            _ImgByte = StreamService.ReadFully(file.GetStream());
             ImgSrc = res;
             return;
 
@@ -123,7 +123,7 @@ namespace FourSquare.ViewModels
                 return stream;
             });
 
-            _ImgByte = ReadFully(file.GetStream());
+            _ImgByte = StreamService.ReadFully(file.GetStream());
 
 
             ImgSrc = res;
@@ -139,8 +139,6 @@ namespace FourSquare.ViewModels
 
                 if (location != null)
                 {
-                    Debug.WriteLine("KNOWN LOC");
-         
                     Lat = location.Latitude.ToString();
                     Lon = location.Longitude.ToString();
                 }
@@ -152,14 +150,13 @@ namespace FourSquare.ViewModels
 
                     if (location2 != null)
                     {
-                        Debug.WriteLine("UNKNOWN LOC");
                         Lat = location2.Latitude.ToString();
                         Lon = location2.Longitude.ToString();
                     }
                 }
 
             }
-            catch(Exception e)
+            catch(Exception )
             {
 
             }
@@ -168,7 +165,8 @@ namespace FourSquare.ViewModels
         public async void UploadPlace()
         {
 
-            int ImgId = await ApiService.UploadImage(_ImgByte);
+            int ImgId = 1;
+            ImgId = await ApiService.UploadImage(_ImgByte);
 
             double LatConvert = -1;
             double LonConvert = -1;
@@ -183,15 +181,7 @@ namespace FourSquare.ViewModels
             }
         }
 
-        public static byte[] ReadFully(Stream input)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                input.CopyTo(ms);
-                return ms.ToArray();
-            }
 
-        }
 
     }
 }

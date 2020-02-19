@@ -91,7 +91,7 @@ namespace FourSquare.ViewModels
                 return stream;
             });
 
-            _ImgByte = ReadFully(file.GetStream());
+            _ImgByte = StreamService.ReadFully(file.GetStream());
             ImgSrc = res;
             return;
 
@@ -121,21 +121,11 @@ namespace FourSquare.ViewModels
                 return stream;
             });
 
-            _ImgByte = ReadFully(file.GetStream());
+            _ImgByte = StreamService.ReadFully(file.GetStream());
 
 
             ImgSrc = res;
             return;
-
-        }
-
-        public static byte[] ReadFully(Stream input)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                input.CopyTo(ms);
-                return ms.ToArray();
-            }
 
         }
 
