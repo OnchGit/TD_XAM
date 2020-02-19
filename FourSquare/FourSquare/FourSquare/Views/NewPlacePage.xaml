@@ -13,13 +13,13 @@
                 <Label Text="Add A New Image:" HorizontalTextAlignment="Center" Margin="10"/>
                 <Image HeightRequest="250" WidthRequest="250" Source="{Binding ImgSrc}"/>
                 <StackLayout Orientation="Horizontal">
-                    <Button Text="Choose A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding PickPictureCommand}"/>
-                    <Button Text="Take A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding TakePictureCommand}"/>
+                    <Button Text="Choose A Picture" Margin="10" Style="{DynamicResource ButtonStyle}" Command="{Binding PickPictureCommand}"/>
+                    <Button Text="Take A Picture" Margin="10" Style="{DynamicResource ButtonStyle}" Command="{Binding TakePictureCommand}"/>
                 </StackLayout>
                 <Entry Placeholder="Latitude" Keyboard="Numeric" Text="{Binding Lat}"/>
                 <Entry Placeholder="Longitude" Keyboard="Numeric"  Text="{Binding Lon}"/>
-                    <Button Text="Get Coordinates From GPS" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding GetCoordsCommand}"/>
-                    <Button Text="Add New Place" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding UploadPlaceCommand}"/>
+                <Button Text="Get Coordinates From GPS" Margin="10" Style="{DynamicResource ButtonStyle}" Command="{Binding GetCoordsCommand}"/>
+                <Button Text="Add New Place" Margin="10" Style="{DynamicResource ButtonStyle}" Command="{Binding UploadPlaceCommand}"/>
 
 
             </StackLayout>

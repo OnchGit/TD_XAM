@@ -90,7 +90,7 @@ namespace FourSquare.Services
                 if(loc != null)
                 {
 
-                    temp=l.OrderBy(x =>CoordsDistance(x.Latitude,x.Longitude,loc.Latitude,loc.Longitude)).ToList();
+                    temp=l.OrderBy(x =>CoordsDistance(loc.Latitude, x.Latitude, loc.Longitude, x.Longitude)).ToList();
 
                 }
                 else
@@ -99,7 +99,7 @@ namespace FourSquare.Services
                     var loc2 = await Geolocation.GetLocationAsync(request);
                     if(loc2 != null)
                     {
-                        temp.OrderBy(x => CoordsDistance(x.Latitude, x.Longitude, loc2.Latitude, loc2.Longitude)).ToList();
+                        temp=l.OrderBy(x => CoordsDistance(loc.Latitude,x.Latitude,loc.Longitude,x.Longitude)).ToList();
                     }
 
                 }
@@ -161,8 +161,8 @@ namespace FourSquare.Services
 
         public static double CoordsDistance(double d1,double d2,double d3,double d4)
         {
-            var Coords_1 = Math.Abs( d1 - d2);
-            var Coords_2 = Math.Abs ( d3 - d4);
+            var Coords_1 = Math.Pow(( d1 - d3),2);
+            var Coords_2 = Math.Pow (( d2 - d4),2);
             return Math.Sqrt(Coords_1 + Coords_2);
         }
 

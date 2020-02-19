@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FourSquare.Views.ProfilePage">
+             x:Class="FourSquare.Views.ProfilePage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -11,15 +12,15 @@
                 <Label Text="Add A New Image:" HorizontalTextAlignment="Center" Margin="10"/>
                 <Image HeightRequest="250" WidthRequest="250" Source="{Binding ImgSrc}"/>
                 <StackLayout Orientation="Horizontal">
-                    <Button Text="Choose A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding PickPictureCommand}"/>
-                    <Button Text="Take A Picture" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" Margin="10" BorderWidth="4" Command="{Binding TakePictureCommand}"/>
+                    <Button Text="Choose A Picture" Style="{DynamicResource ButtonStyle}" Margin="10" Command="{Binding PickPictureCommand}"/>
+                    <Button Text="Take A Picture"  Margin="10" Style="{DynamicResource ButtonStyle}" Command="{Binding TakePictureCommand}"/>
                 </StackLayout>
-                <Button Text="Update Profile" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4" Command="{Binding ProfileUpdateCommand}"/>
+                <Button Text="Update Profile" Style="{DynamicResource ButtonStyle}" Command="{Binding ProfileUpdateCommand}"/>
 
                 <Label Text="Update Your Password:" HorizontalTextAlignment="Center" Margin="0,20,0,0"/>
                 <Entry Placeholder="Old Password" IsPassword="True" Text="{Binding OldPsw}"/>
                 <Entry Placeholder="New Password" IsPassword="True" Text="{Binding NewPsw}"/>
-                <Button Text="Update Password" BackgroundColor="LightGray" BorderColor="LightBlue" CornerRadius="10" BorderWidth="4" Command="{Binding PasswordUpdateCommand}"/>
+                <Button Text="Update Password" Style="{DynamicResource ButtonStyle}" Command="{Binding PasswordUpdateCommand}"/>
 
             </StackLayout>
         </ScrollView>
