@@ -179,6 +179,10 @@ namespace FourSquare.ViewModels
                 PersistencyService.OcFiller(await ApiService.GetPlaces());
                 await NavigationService.PushAsync(new MainPage());
             }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Bad Coordinates!", "Please enter valid numbers.", "I got it!");
+            }
         }
 
 

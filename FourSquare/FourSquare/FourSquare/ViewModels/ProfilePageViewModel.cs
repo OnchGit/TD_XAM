@@ -138,22 +138,41 @@ namespace FourSquare.ViewModels
                 var tmp = await ApiService.GetImageFromId(id.Value);
                 ImgSrc = (StreamImageSource)ImageSource.FromStream(() => new MemoryStream(tmp));
             }
+            else
+            {
+                var tmp = await ApiService.GetImageFromId(1);
+                PersistencyService.GetUser().ImageId = 1;
+                ImgSrc = (StreamImageSource)ImageSource.FromStream(() => new MemoryStream(tmp));
+            }
        
         }
 
         public async void ProfileUpdate()
         {
             var ImgId = await ApiService.UploadImage(_ImgByte);
-            await ApiService.UpdateProfile(fn, ln, ImgId);
-            var temp = await ApiService.GetUser();
-
-            Console.WriteLine("USERUPDATE: " + temp.FirstName + " " + temp.LastName + " " + temp.ImageId);
+            var tmp = await ApiService.UpdateProfile(fn, ln, ImgId);
+            if (tmp == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("Profile Change Error!", "Please check your information.", "I got it!");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Profile Change Success!", "Enjoy your new profile!", "I got it!");
+            }
 
         }
 
         public async void PasswordUpdate()
         {
-            await ApiService.UpdatePassword(OldPsw, NewPsw);
+           var tmp = await ApiService.UpdatePassword(OldPsw, NewPsw);
+            if (tmp == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("Password Change Error!", "Please check your information.", "I got it!");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Password Change Success!", "Enjoy your new password!", "I got it!");
+            }
         }
 
 

@@ -48,7 +48,8 @@ namespace FourSquare.ViewModels
         private async void RegisterAction()
         {
             LoginResult res = await ApiService.RegistrationHandler(usr, ln, fn, passw);
-                await NavigationService.PopAsync();
+            await Application.Current.MainPage.DisplayAlert("Succesful Registration!", "Now enjoy this awesome app!", "I got it!");
+            await NavigationService.PopAsync();
         }
 
 

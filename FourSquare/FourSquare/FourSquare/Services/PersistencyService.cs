@@ -83,7 +83,7 @@ namespace FourSquare.Services
 
         public static async void OcFiller(List<PlaceItemSummary2> l)
         {
-            var temp = l;
+            List<PlaceItemSummary2> temp = null;
 
             try {
                 var loc = await Geolocation.GetLastKnownLocationAsync();
@@ -107,7 +107,10 @@ namespace FourSquare.Services
 
             } catch (Exception) { }
             
-
+            if(temp == null)
+            {
+                temp = l;
+            }
 
             if (temp.Count != oc.Count)
             {

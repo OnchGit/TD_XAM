@@ -292,8 +292,12 @@ namespace FourSquare.Services
                 var json = JsonConvert.SerializeObject(tmp);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PutAsync(uri, content);
-
-                return 1;
+                if (response.IsSuccessStatusCode)
+                {
+                    return 1;
+                }
+                else return 0;
+                
             }
             catch (Exception) { return 0; }
         }
@@ -312,7 +316,11 @@ namespace FourSquare.Services
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PutAsync(uri, content);
 
-                return 1;
+                if (response.IsSuccessStatusCode)
+                {
+                    return 1;
+                }
+                else return 0;
             }
             catch (Exception) { return 0; }
         }

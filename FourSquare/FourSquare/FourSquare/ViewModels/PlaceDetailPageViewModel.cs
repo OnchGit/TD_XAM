@@ -93,8 +93,16 @@ namespace FourSquare.ViewModels
 
         private async void PostComment()
         {
-            int temp = await ApiService.PostComment(PI.Id, CommentContent);
-            Update();
+            if(CommentContent != null && CommentContent!="")
+            {
+                int temp = await ApiService.PostComment(PI.Id, CommentContent);
+                Update();
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Comment Error!", "You cannot post an empty comment!", "I got it!");
+            }
+
 
         }
 

@@ -46,6 +46,10 @@ namespace FourSquare
                 PersistencyService.OcFiller(await ApiService.GetPlaces());
                 await NavigationService.PushAsync(new MainPage());
             }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Login Error!", "Please enter valid login information.","I got it!");
+            }
         }
 
         private async void RegisterAction()
